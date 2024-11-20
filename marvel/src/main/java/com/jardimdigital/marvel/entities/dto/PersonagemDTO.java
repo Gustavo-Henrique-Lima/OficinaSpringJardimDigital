@@ -1,34 +1,23 @@
-package com.jardimdigital.marvel.entities;
+package com.jardimdigital.marvel.entities.dto;
 
 import java.io.Serializable;
-import java.util.Objects;
 
-import com.jardimdigital.marvel.entities.dto.PersonagemDTO;
+import com.jardimdigital.marvel.entities.Personagem;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "tb_personagem")
-public class Personagem implements Serializable {
+public class PersonagemDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String url_foto;
 	private int aparicoes;
 	private double popularidade;
 
-	public Personagem() {
+	public PersonagemDTO() {
 	}
 
-	public Personagem(Long id, String nome, String url_foto, int aparicoes, double popularidade) {
+	public PersonagemDTO(Long id, String nome, String url_foto, int aparicoes, double popularidade) {
 		this.id = id;
 		this.nome = nome;
 		this.url_foto = url_foto;
@@ -36,7 +25,7 @@ public class Personagem implements Serializable {
 		this.popularidade = popularidade;
 	}
 
-	public Personagem(PersonagemDTO entity) {
+	public PersonagemDTO(Personagem entity) {
 		this.id = entity.getId();
 		this.nome = entity.getNome();
 		this.url_foto = entity.getUrl_foto();
@@ -82,23 +71,6 @@ public class Personagem implements Serializable {
 
 	public void setPopularidade(double popularidade) {
 		this.popularidade = popularidade;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, nome);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Personagem other = (Personagem) obj;
-		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
 	}
 
 }

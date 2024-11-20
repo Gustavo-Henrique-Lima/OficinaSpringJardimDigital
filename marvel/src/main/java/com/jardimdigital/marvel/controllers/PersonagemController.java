@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jardimdigital.marvel.entities.Personagem;
+import com.jardimdigital.marvel.entities.dto.PersonagemDTO;
 import com.jardimdigital.marvel.services.PersonagemService;
 
 @RestController
@@ -26,31 +26,32 @@ public class PersonagemController {
 	}
 
 	@GetMapping("/buscar/{id}")
-	public ResponseEntity<Personagem> buscarPersonagem(@PathVariable Long id) {
-		Personagem Personagem = service.buscarPersonagem(id);
+	public ResponseEntity<PersonagemDTO> buscarPersonagem(@PathVariable Long id) {
+		PersonagemDTO Personagem = service.buscarPersonagem(id);
 		return ResponseEntity.ok(Personagem);
 	}
 
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<Personagem> buscarPersonagemPorNome(@PathVariable String nome) {
-		Personagem Personagem = service.buscarPersonagemNome(nome);
+	public ResponseEntity<PersonagemDTO> buscarPersonagemPorNome(@PathVariable String nome) {
+		PersonagemDTO Personagem = service.buscarPersonagemNome(nome);
 		return ResponseEntity.ok(Personagem);
 	}
 
 	@GetMapping("/listar")
-	public ResponseEntity<List<Personagem>> listarPersonagems() {
-		List<Personagem> Personagens = service.listarPersonagens();
+	public ResponseEntity<List<PersonagemDTO>> listarPersonagems() {
+		List<PersonagemDTO> Personagens = service.listarPersonagens();
 		return ResponseEntity.ok(Personagens);
 	}
 
 	@PostMapping("/salvar")
-	public Personagem salvarPersonagem(@RequestBody Personagem Personagem) {
+	public PersonagemDTO salvarPersonagem(@RequestBody PersonagemDTO Personagem) {
 		return service.salvarPersonagem(Personagem);
 	}
 
 	@PutMapping("/atualizar/{id}")
-	public ResponseEntity<Personagem> atualizarPersonagem(@PathVariable Long id, @RequestBody Personagem Personagem) {
-		Personagem PersonagemAtualizado = service.atualizarPersonagem(id, Personagem);
+	public ResponseEntity<PersonagemDTO> atualizarPersonagem(@PathVariable Long id,
+			@RequestBody PersonagemDTO Personagem) {
+		PersonagemDTO PersonagemAtualizado = service.atualizarPersonagem(id, Personagem);
 		return ResponseEntity.ok(PersonagemAtualizado);
 	}
 
